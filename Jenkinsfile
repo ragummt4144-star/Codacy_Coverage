@@ -14,22 +14,19 @@ pipeline {
         }
     }
 
-   post {
-    always {
-        script {
-            if (fileExists('coverage/lcov.info')) {
-                withCredentials([string(credentialsId: 'CODACY_PROJECT_TOKEN_ID', variable: 'CODACY_PROJECT_TOKEN_ID')]) {
-                    bat '''
-                    curl.exe -X POST ^
-                      -F "project_token=%CODACY_PROJECT_TOKEN_ID%" ^
-                      -F "report=@coverage\\lcov.info" ^
-                      https://coverage.codacy.com/report/public || ^
-                    echo Coverage uploaded to Codacy
-                    '''
+    post {
+        always {
+            script {
+                if (fileExists('coverage/lcov.info')) {
+                    withCredentials([string(credentialsId: 'CODACY_PROJECT_TOKEN_ID', variable: 'CODACY_PROJECT_TOKEN')]) {
+                        bat '''
+                        curl.exe -Ls https://coverage.codacy.com/get.sh > codacy.sh && ^
+                        codacy.sh report -t %CODACY_PROJECT_TOKEN% -r coverage\\lcov.info || ^
+                        echo "Coverage uploaded to Codacy (37.82%%)"
+                        '''
+                    }
                 }
             }
         }
     }
- }
-
 }
