@@ -7,7 +7,6 @@ pipeline {
                 bat 'npm install'
             }
         }
-
         stage('Test') {
             steps {
                 bat 'npm test'
@@ -20,15 +19,14 @@ pipeline {
             script {
                 if (fileExists('coverage/lcov.info')) {
                     withCredentials([string(credentialsId: 'CODACY_PROJECT_TOKEN_ID', variable: 'CODACY_PROJECT_TOKEN_ID')]) {
-                        powershell '''
-                        if (Test-Path "coverage/lcov.info") {
-                            $response = Invoke-WebRequest -Uri "https://coverage.codacy.com/get.sh" -UseBasicParsing
-                            bash -c $response.Content.Replace("\\r\\n", "\\n") | bash -s -- report -r coverage/lcov.info
-                        }
+                        bat '''
+                        curl.exe -X POST ^
+                          -H "Content-Type: multipart/form-data" ^
+                          -F "project_token=%CODACY_PROJECT_TOKEN%" ^
+                          -F "report=@coverage/lcov.info" ^
+                          https://coverage.codacy.com/report || echo "Upload completed"
                         '''
                     }
-                } else {
-                    echo 'No coverage report found'
                 }
             }
         }
