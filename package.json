@@ -11,6 +11,10 @@
     "build:main": "tsc",
     "build:renderer": "vite build"
   },
+"jest": {
+    "coverageDirectory": "coverage",
+    "coverageReporters": ["lcov", "text"]
+  },
   "dependencies": {
     "@nut-tree/nut-js": "^3.1.2",
     "fs-extra": "^11.2.0",
