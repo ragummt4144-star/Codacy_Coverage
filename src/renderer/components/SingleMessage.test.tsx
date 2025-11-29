@@ -19,7 +19,7 @@ test('button enables only with valid inputs', () => {
 });
 
 test('alerts on send error', async () => {
-  const alertMock = jest.spyOn(globalThis, 'alert').mockImplementation(() => {});
+  const alertMock = (globalThis as any).alert as jest.Mock;
   const onSendMessage = jest.fn().mockRejectedValue(new Error('fail'));
   const { getByPlaceholderText, getByText } = render(
     <SingleMessage onSendMessage={onSendMessage} isRunning={true} />

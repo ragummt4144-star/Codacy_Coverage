@@ -12,8 +12,10 @@
     "build:renderer": "vite build"
   },
 "jest": {
+    "testEnvironment": "jsdom",
     "coverageDirectory": "coverage",
-    "coverageReporters": ["lcov", "text"]
+    "coverageReporters": ["lcov", "text"],
+    "setupFilesAfterEnv": ["<rootDir>/src/setupTests.ts"]
   },
   "dependencies": {
     "@nut-tree/nut-js": "^3.1.2",
