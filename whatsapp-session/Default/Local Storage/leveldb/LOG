@@ -1,0 +1,15 @@
+2025/11/05-15:49:20.520 42fc Reusing MANIFEST C:\Wentrite Technologies\Google_Chrome_Extension\Jest_Sonarqube_Extension\Whatsapp_Extension\frontend\whatsapp-session\Default\Local Storage\leveldb/MANIFEST-000001
+2025/11/05-15:49:20.526 42fc Recovering log #54
+2025/11/05-15:49:20.537 42fc Reusing old log C:\Wentrite Technologies\Google_Chrome_Extension\Jest_Sonarqube_Extension\Whatsapp_Extension\frontend\whatsapp-session\Default\Local Storage\leveldb/000054.log 
+2025/11/05-15:51:21.971 42fc Level-0 table #58: started
+2025/11/05-15:51:21.984 42fc Level-0 table #58: 14663 bytes OK
+2025/11/05-15:51:21.988 42fc Delete type=0 #54
+2025/11/05-15:51:21.989 42fc Compacting 4@0 + 1@1 files
+2025/11/05-15:51:22.001 42fc Generated table #59@0: 740 keys, 18568 bytes
+2025/11/05-15:51:22.002 42fc Compacted 4@0 + 1@1 files => 18568 bytes
+2025/11/05-15:51:22.003 42fc compacted to: files[ 0 1 1 0 0 0 0 ]
+2025/11/05-15:51:22.005 42fc Delete type=2 #46
+2025/11/05-15:51:22.005 42fc Delete type=2 #49
+2025/11/05-15:51:22.006 42fc Delete type=2 #52
+2025/11/05-15:51:22.006 42fc Delete type=2 #55
+2025/11/05-15:51:22.006 42fc Delete type=2 #58
