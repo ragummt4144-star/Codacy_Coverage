@@ -13,19 +13,22 @@ pipeline {
                 bat 'npm test'
             }
         }
+    }
 
-        stage('Codacy coverage') {
-            steps {
-                script {
-                    
-                    if (fileExists('coverage/lcov.info')) {
-                        withCredentials([string(credentialsId: 'CODACY_PROJECT_TOKEN_ID', variable: 'CODACY_PROJECT_TOKEN_ID')]) {
-                            bat '''
-                            bash -lc "curl -Ls https://coverage.codacy.com/get.sh | bash -s -- report -r coverage/lcov.info"
-                            '''
+    post {
+        always {
+            stage('Codacy coverage') {
+                steps {
+                    script {
+                        if (fileExists('coverage/lcov.info')) {
+                            withCredentials([string(credentialsId: 'CODACY_PROJECT_TOKEN_ID', variable: 'CODACY_PROJECT_TOKEN_ID')]) {
+                                bat '''
+                                bash -lc "curl -Ls https://coverage.codacy.com/get.sh | bash -s -- report -r coverage/lcov.info"
+                                '''
+                            }
+                        } else {
+                            echo 'No coverage report found'
                         }
-                    } else {
-                        echo 'No coverage report found - skipping upload'
                     }
                 }
             }
